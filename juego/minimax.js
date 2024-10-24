@@ -24,3 +24,22 @@ function minimax(newBoard, player) {
         newBoard[move.index] = ''; // Reset the spot
         moves.push(move);
     }
+ let bestMove;
+    if (player === 'X') {
+        let bestScore = -1000;
+        for (let i = 0; i < moves.length; i++) {
+            if (moves[i].score > bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
+        }
+    } else {
+        let bestScore = 1000;
+        for (let i = 0; i < moves.length; i++) {
+            if (moves[i].score < bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
+        }
+    }
+    
