@@ -4,106 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe con IA</title>
-    <style> body {
-        background-color: #f4f4f9; /* Fondo claro */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-family: 'Poppins', sans-serif; /* Fuente moderna */
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        justify-content: center;
-    }
-    h1 {
-        font-size: 36px;
-        color: #333;
-        text-shadow: 1px 1px 2px #000;
-    }
-    .cell {
-        width: 80px;
-        height: 80px;
-        border: 3px solid #444;
-        display: inline-block;
-        text-align: center;
-        line-height: 80px;
-        font-size: 36px;
-        cursor: pointer;
-        transition: background-color 0.3s, box-shadow 0.3s;
-        background-color: #ffffff;
-        box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
-    }
-    .board {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        margin: 20px;
-    }
-    .status {
-        margin: 20px;
-        font-size: 24px;
-        font-weight: bold;
-        color: #333;
-    }
-    button {
-        margin-top: 20px;
-        padding: 10px 20px;
-        background-color: #444;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 18px;
-        box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-        transition: background-color 0.3s, box-shadow 0.3s;
-    }
-    </style>
-       
-    <body>
-        <h1>Juego Tic-Tac-Toe con IA</h1>
-        <div class="status">Turno de X</div>
+    <style>
+        body {
+            background-color: #f4f4f9;  /* Fondo claro */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;  /* Fuente moderna */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            justify-content: center;
+        }
         
-        <div>
-            <h2>Nivel de dificultad:</h2>
-            <select id="difficulty">
-                <option value="easy">Fácil</option>
-                <option value="hard">Difícil</option>
-            </select>
-        </div>
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-shadow: 1px 1px 2px #000;
+        }
+        
+        .cell {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #444;
+            display: inline-block;
+            text-align: center;
+            line-height: 80px;
+            font-size: 36px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            background-color: #ffffff;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .cell:hover {
+            background-color: #e0e0ff;  /* Efecto hover */
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+        }
+        
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px;
+        }
+        
+        .status {
+            margin: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        
+        button:hover {
+            background-color: #555;
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.5);
+        }
+        
+        select {
+            padding: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
 
-        <div class="board">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-        </div>
-        <button onclick="resetGame()">Reiniciar Juego</button>
-        <button onclick="toggleDarkMode()">Modo Oscuro</button>
-        <audio id="clickSound" src="sonidos/click.mp3"></audio>
-        <audio id="winSound" src="sonidos/win.mp3"></audio>
-        <audio id="drawSound" src="sonidos/empate.mp3"></audio>
-        <audio id="loseSound" src="sonidos/perdida.mp3"></audio>
-        <script src="minimax.js"></script>
-        <script src="sketch.js"></script>
-        <script>
-            function toggleDarkMode() {
-                document.body.classList.toggle('dark-mode');
-                const cells = document.querySelectorAll('.cell');
-                cells.forEach(cell => {
-                    cell.classList.toggle('dark-mode');
-                });
-                const buttons = document.querySelectorAll('button');
-                buttons.forEach(button => {
-                    button.classList.toggle('dark-mode');
-                });
-                document.querySelector('.status').classList.toggle('dark-mode');
-            }
-        </script>
-    </body>
-    </html>
-                
+        /* Estilos para el modo oscuro */
+        body.dark-mode {
+            background-color: #222;
+            color: #fff;
+        }
+        
+        .cell.dark-mode {
+            background-color: #333;
+            border-color: #555;
+            color: #fff;
+        }
+        
+        button.dark-mode {
+            background-color: #555;
+            color: #fff;
+        }
+        
+        .status.dark-mode {
+            color: #fff;
+        }
+
+        @keyframes blink {
+            0% { background-color: #00ff00; }
+            50% { background-color: #ffff00; }
+            100% { background-color: #00ff00; }
+        }
+        
+        .winning-cell {
+            animation: blink 0.5s ease-in-out infinite;  /* Parpadeo de celdas ganadoras */
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Juego Tic-Tac-Toe con IA</h1>
+    <div class="status">Turno de X</div>
+    
+    <div>
+        <h2>Nivel de dificultad:</h2>
+        <select id="difficulty">
+            <option value="easy">Fácil</option>
+            <option value="hard">Difícil</option>
+        </select>
+    </div>
+
+    <div class="board">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+    
+    <button onclick="resetGame()">Reiniciar Juego</button>
+    <button onclick="toggleDarkMode()">Modo Oscuro</button>
+
+    <!-- Agregar archivos de sonido -->
+    <audio id="clickSound" src="sonidos/click.mp3"></audio>
+    <audio id="winSound" src="sonidos/win.mp3"></audio>
+    <audio id="drawSound" src="sonidos/empate.mp3"></audio>
+    <audio id="loseSound" src="sonidos/perdida.mp3"></audio>
+
+    <script src="minimax.js"></script>
+    <script src="sketch.js"></script>
+
+    <script>
+        // Función para activar/desactivar el modo oscuro
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => {
+                cell.classList.toggle('dark-mode');
+            });
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.classList.toggle('dark-mode');
+            });
+            document.querySelector('.status').classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
