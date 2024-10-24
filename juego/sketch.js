@@ -12,3 +12,10 @@ const clickSound = document.getElementById('clickSound');
 const winSound = document.getElementById('winSound');
 const drawSound = document.getElementById('drawSound');
 const loseSound = document.getElementById('loseSound');
+
+// Actualizar el estado de turno
+function updateStatus() {
+    if (gameActive) {
+        statusDisplay.innerHTML = `Turno de ${currentPlayer}`;
+    }
+}
