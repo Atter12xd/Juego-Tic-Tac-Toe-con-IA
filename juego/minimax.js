@@ -42,4 +42,5 @@ function minimax(newBoard, player) {
             }
         }
     }
-    
+    return moves[bestMove] || { index: availableSpots[0], score: 0 }; // Fallback for edge cases
+}
