@@ -89,4 +89,21 @@
         <audio id="drawSound" src="sonidos/empate.mp3"></audio>
         <audio id="loseSound" src="sonidos/perdida.mp3"></audio>
         <script src="minimax.js"></script>
-        <script src="sketch.js"></script>            
+        <script src="sketch.js"></script>
+        <script>
+            function toggleDarkMode() {
+                document.body.classList.toggle('dark-mode');
+                const cells = document.querySelectorAll('.cell');
+                cells.forEach(cell => {
+                    cell.classList.toggle('dark-mode');
+                });
+                const buttons = document.querySelectorAll('button');
+                buttons.forEach(button => {
+                    button.classList.toggle('dark-mode');
+                });
+                document.querySelector('.status').classList.toggle('dark-mode');
+            }
+        </script>
+    </body>
+    </html>
+                
