@@ -44,3 +44,28 @@ function handleCellClick(event) {
         handleAIMove(); // Hacer movimiento IA
     }
 }
+// Movimiento de la IA
+function handleAIMove() {
+    setTimeout(() => {
+        let bestMove;
+
+        if (difficultySelect.value === 'easy' && Math.random() < 0.5) {
+            // Movimiento aleatorio en modo fácil
+            const availableMoves = board.reduce((acc, val, index) => val === '' ? acc.concat(index) : acc, []);
+            bestMove = { index: availableMoves[Math.floor(Math.random() * availableMoves.length)] };
+        } else {
+            // Movimiento óptimo usando minimax en modo difícil
+            bestMove = minimax(board, 'O');
+        }
+
+        board[bestMove.index] = 'O';
+        cells[bestMove.index].innerHTML = 'O';
+        
+        checkResult();
+        if (gameActive) {
+            currentPlayer = 'X';
+            updateStatus();
+        }
+        userCanClick = true; // Volver a habilitar clics después del turno de la IA
+    }, 500); // Añadir retraso para simular "pensamiento" de la IA
+}
