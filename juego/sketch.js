@@ -69,3 +69,41 @@ function handleAIMove() {
         userCanClick = true; // Volver a habilitar clics después del turno de la IA
     }, 500); // Añadir retraso para simular "pensamiento" de la IA
 }
+// Verificar resultado del juego
+function checkResult() {
+    const winningConditions = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
+
+    let roundWon = false;
+    for (let i = 0; i < winningConditions.length; i++) {
+        const [a, b, c] = winningConditions[i];
+        if (board[a] === '' || board[b] === '' || board[c] === '') {
+            continue;
+        }
+        if (board[a] === board[b] && board[a] === board[c]) {
+            roundWon = true;
+            highlightWinningCells([a, b, c]); // Resaltar las celdas ganadoras
+            if (currentPlayer === 'X') {
+                winSound.play();  // Reproducir sonido de victoria si gana el jugador
+            } else {
+                loseSound.play();  // Reproducir sonido de pérdida si gana la IA
+            }
+            break;
+        }
+    }
+
+    if (roundWon) {
+        statusDisplay.innerHTML = `¡Jugador ${currentPlayer} ha ganado!`;
+        gameActive = false;
+        return;
+    }
+
+    if (!board.includes('')) {
+        drawSound.play();  // Reproducir sonido de empate
+        statusDisplay.innerHTML = '¡Es un empate!';
+        gameActive = false;
+    }
+}
