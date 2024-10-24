@@ -19,3 +19,28 @@ function updateStatus() {
         statusDisplay.innerHTML = `Turno de ${currentPlayer}`;
     }
 }
+// Manejar clic en la celda
+function handleCellClick(event) {
+    if (!userCanClick || !gameActive) return; // Bloquear clics durante el turno de la IA
+
+    const clickedCell = event.target;
+    const clickedCellIndex = Array.from(cells).indexOf(clickedCell);
+
+    if (board[clickedCellIndex] !== '') {
+        return;
+    }
+
+    clickSound.play();  // Reproducir sonido de clic al seleccionar una celda
+
+    board[clickedCellIndex] = currentPlayer;
+    clickedCell.innerHTML = currentPlayer;
+    
+    checkResult();
+
+    if (gameActive) {
+        currentPlayer = 'O'; // Cambiar al jugador IA
+        updateStatus();
+        userCanClick = false; // Desactivar clics mientras juega la IA
+        handleAIMove(); // Hacer movimiento IA
+    }
+}
