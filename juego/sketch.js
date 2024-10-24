@@ -113,3 +113,16 @@ function highlightWinningCells(indices) {
         cells[index].style.backgroundColor = '#00ff00'; // Color de las celdas ganadoras
     });
 }
+// Reiniciar juego
+function resetGame() {
+    board.fill(''); // Limpiar el tablero
+    cells.forEach(cell => {
+        cell.innerHTML = '';  // Limpiar el contenido de las celdas
+        cell.style.backgroundColor = ''; // Restaurar color original de las celdas
+        cell.classList.remove('winning-cell'); // Quitar cualquier animación de las celdas ganadoras
+    });
+    gameActive = true;
+    currentPlayer = 'X';  // Restablecer el turno del jugador
+    updateStatus();  // Actualizar el estado
+    userCanClick = true;  // Asegurarse de que el jugador pueda hacer clic
+}
