@@ -107,3 +107,9 @@ function checkResult() {
         gameActive = false;
     }
 }
+// Resaltar celdas ganadoras
+function highlightWinningCells(indices) {
+    indices.forEach(index => {
+        cells[index].style.backgroundColor = '#00ff00'; // Color de las celdas ganadoras
+    });
+}
