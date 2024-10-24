@@ -4,57 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe con IA</title>
-    <style>
-        body {
-            background-color: #f4f4f9; /* Fondo claro */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: 'Poppins', sans-serif; /* Fuente moderna */
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            justify-content: center;
-        }
-        h1 {
-            font-size: 36px;
-            color: #333;
-            text-shadow: 1px 1px 2px #000;
-        }
-        .cell {
-            width: 80px;
-            height: 80px;
-            border: 3px solid #444;
-            display: inline-block;
-            text-align: center;
-            line-height: 80px;
-            font-size: 36px;
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
-            background-color: #ffffff;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
-        }
-        .board {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 20px;
-        }
-        .status {
-            margin: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-        }
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #444;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }        
+    <style> body {
+        background-color: #f4f4f9; /* Fondo claro */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Poppins', sans-serif; /* Fuente moderna */
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        justify-content: center;
+    }
+    h1 {
+        font-size: 36px;
+        color: #333;
+        text-shadow: 1px 1px 2px #000;
+    }
+    .cell {
+        width: 80px;
+        height: 80px;
+        border: 3px solid #444;
+        display: inline-block;
+        text-align: center;
+        line-height: 80px;
+        font-size: 36px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        background-color: #ffffff;
+        box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+    }
+    .board {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 20px;
+    }
+    .status {
+        margin: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #444;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    </style>
+       
+    <body>
+        <h1>Juego Tic-Tac-Toe con IA</h1>
+        <div class="status">Turno de X</div>
+        
+        <div>
+            <h2>Nivel de dificultad:</h2>
+            <select id="difficulty">
+                <option value="easy">Fácil</option>
+                <option value="hard">Difícil</option>
+            </select>
+        </div>
