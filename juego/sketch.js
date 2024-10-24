@@ -126,3 +126,7 @@ function resetGame() {
     updateStatus();  // Actualizar el estado
     userCanClick = true;  // Asegurarse de que el jugador pueda hacer clic
 }
+cells.forEach(cell => cell.addEventListener('click', handleCellClick));
+
+// Actualizar el estado inicial del turno
+updateStatus();
