@@ -24,7 +24,8 @@ function minimax(newBoard, player) {
         newBoard[move.index] = ''; // Reset the spot
         moves.push(move);
     }
- let bestMove;
+
+    let bestMove;
     if (player === 'X') {
         let bestScore = -1000;
         for (let i = 0; i < moves.length; i++) {
@@ -42,8 +43,10 @@ function minimax(newBoard, player) {
             }
         }
     }
+
     return moves[bestMove] || { index: availableSpots[0], score: 0 }; // Fallback for edge cases
 }
+
 function checkWin(board, player) {
     const winningConditions = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -55,4 +58,4 @@ function checkWin(board, player) {
         return condition.every(index => board[index] === player);
     });
 }
-
+    
