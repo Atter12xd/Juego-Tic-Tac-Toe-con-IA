@@ -44,3 +44,15 @@ function minimax(newBoard, player) {
     }
     return moves[bestMove] || { index: availableSpots[0], score: 0 }; // Fallback for edge cases
 }
+function checkWin(board, player) {
+    const winningConditions = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
+    
+    return winningConditions.some(condition => {
+        return condition.every(index => board[index] === player);
+    });
+}
+
