@@ -19,6 +19,7 @@ function updateStatus() {
         statusDisplay.innerHTML = `Turno de ${currentPlayer}`;
     }
 }
+
 // Manejar clic en la celda
 function handleCellClick(event) {
     if (!userCanClick || !gameActive) return; // Bloquear clics durante el turno de la IA
@@ -44,6 +45,7 @@ function handleCellClick(event) {
         handleAIMove(); // Hacer movimiento IA
     }
 }
+
 // Movimiento de la IA
 function handleAIMove() {
     setTimeout(() => {
@@ -69,6 +71,7 @@ function handleAIMove() {
         userCanClick = true; // Volver a habilitar clics después del turno de la IA
     }, 500); // Añadir retraso para simular "pensamiento" de la IA
 }
+
 // Verificar resultado del juego
 function checkResult() {
     const winningConditions = [
@@ -107,12 +110,14 @@ function checkResult() {
         gameActive = false;
     }
 }
+
 // Resaltar celdas ganadoras
 function highlightWinningCells(indices) {
     indices.forEach(index => {
         cells[index].style.backgroundColor = '#00ff00'; // Color de las celdas ganadoras
     });
 }
+
 // Reiniciar juego
 function resetGame() {
     board.fill(''); // Limpiar el tablero
@@ -126,6 +131,7 @@ function resetGame() {
     updateStatus();  // Actualizar el estado
     userCanClick = true;  // Asegurarse de que el jugador pueda hacer clic
 }
+
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
 
 // Actualizar el estado inicial del turno
